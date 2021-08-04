@@ -8,6 +8,8 @@ import javax.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name = "tb_produto")
 public class ProdutoModel {
@@ -80,18 +82,16 @@ public class ProdutoModel {
 	public void setCategoria(CategoriaModel categoria) {
 		this.categoria = categoria;
 	}
-	
 
-/*    @OneToOne
-    @JsonIgnoreProperties("Usuario")
-    private Usuario usuarioId;
+	@ManyToOne
+    @JsonIgnoreProperties("produto")
+    private UsuarioModel usuario;
 
-    public Usuario getUsuarioId() {
-        return usuarioId;
-    }
+	public UsuarioModel getusuario() {
+		return usuario;
+	}
 
-    public void setUsuarioId(Usuario usuarioId) {
-        this.usuarioId = usuarioId;
-    }
-*/
+	public void setusuario(UsuarioModel usuario) {
+		this.usuario = usuario;
+	}
 }

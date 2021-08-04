@@ -1,8 +1,11 @@
 package br.org.generation.Balaio.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_usuario")
@@ -31,7 +34,7 @@ public class UsuarioModel {
     @NotNull
     private String descricaouser;
     @NotNull
-    private boolean isVendedor;
+    private String tipo;
 
     public long getId() {
         return id;
@@ -113,11 +116,23 @@ public class UsuarioModel {
         this.descricaouser = descricaouser;
     }
 
-    public boolean isVendedor() {
-        return isVendedor;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setVendedor(boolean vendedor) {
-        isVendedor = vendedor;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    @OneToMany(mappedBy ="usuario", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("usuario")
+    private List<ProdutoModel> produto;
+
+    public List<ProdutoModel> getProduto() {
+        return produto;
+    }
+
+    public void setProduto(List<ProdutoModel> produto) {
+        this.produto = produto;
     }
 }
