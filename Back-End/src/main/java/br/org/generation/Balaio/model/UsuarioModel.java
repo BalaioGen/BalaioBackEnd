@@ -124,8 +124,8 @@ public class UsuarioModel {
         this.tipo = tipo;
     }
 
-    @OneToMany(mappedBy ="usuario", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("usuario")
+    @OneToMany(mappedBy ="usuario", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties({"usuario","categoria"})
     private List<ProdutoModel> produto;
 
     public List<ProdutoModel> getProduto() {
