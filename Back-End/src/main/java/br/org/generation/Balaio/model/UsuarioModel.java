@@ -20,6 +20,8 @@ public class UsuarioModel {
     @NotNull
     private String nome;
     @NotNull
+    private String usuario;
+    @NotNull
     private String senha;
     @NotNull
     private int cep;
@@ -122,6 +124,14 @@ public class UsuarioModel {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     @OneToMany(mappedBy ="usuario", cascade = CascadeType.REMOVE)
