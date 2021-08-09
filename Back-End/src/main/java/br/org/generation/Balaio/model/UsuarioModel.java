@@ -24,7 +24,7 @@ public class UsuarioModel {
     @NotNull
     private String senha;
     @NotNull
-    private int cep;
+    private long cep;
     @NotNull
     private int numcasa;
     @NotNull
@@ -70,11 +70,11 @@ public class UsuarioModel {
         this.senha = senha;
     }
 
-    public int getCep() {
+    public long getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(long cep) {
         this.cep = cep;
     }
 
