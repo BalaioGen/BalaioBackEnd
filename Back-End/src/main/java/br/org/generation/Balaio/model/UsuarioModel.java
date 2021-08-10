@@ -1,11 +1,20 @@
 package br.org.generation.Balaio.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.time.LocalDate;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuario")
@@ -37,8 +46,19 @@ public class UsuarioModel {
     private String descricaouser;
     @NotNull
     private String tipo;
+    @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataNascimento;
+    
+    public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
 
-    public long getId() {
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public long getId() {
         return id;
     }
 
