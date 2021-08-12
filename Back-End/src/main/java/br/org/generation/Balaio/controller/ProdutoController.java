@@ -27,6 +27,9 @@ public class ProdutoController {
 
     @Autowired
     private ProdutoRepository ProdutoRepository;
+    
+    @Autowired
+    private ProdutoService ProdutoService;
 
     @GetMapping("/{id}")
     private ResponseEntity<ProdutoModel> getById(@PathVariable long id) {

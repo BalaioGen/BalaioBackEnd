@@ -28,6 +28,9 @@ public class CategoriaController {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
+	@Autowired
+	private CategoriaService categoriaService;
+	
 	@GetMapping
 	private ResponseEntity<List<CategoriaModel>> getAll() {
 		return ResponseEntity.ok(categoriaRepository.findAll());
@@ -69,7 +72,7 @@ public class CategoriaController {
 	//Favoritos
 	@GetMapping("/trendtopics")
 	public ResponseEntity<List<CategoriaModel>> getTrendTopics(){
-		return ResponseEntity.ok(CategoriaService.trendTopics());
+		return ResponseEntity.ok(categoriaService.trendTopics());
 	}
 }
 
