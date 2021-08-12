@@ -25,11 +25,26 @@ public class CategoriaModel {
 
 	@NotNull
 	private boolean ativo = true;
+	
+	@OneToMany(mappedBy ="categoria", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("categoria")
+	private List<ProdutoModel> produto;
+	
+	@Transient
+	private int qtdCategoria;
 
 	// GETTERS/SETTERS:
 
 	public long getId() {
 		return id;
+	}
+
+	public int getQtdCategoria() {
+		return qtdCategoria;
+	}
+
+	public void setQtdCategoria(int qtdCategoria) {
+		this.qtdCategoria = qtdCategoria;
 	}
 
 	public void setId(long id) {
@@ -59,12 +74,6 @@ public class CategoriaModel {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
-
-
-	@OneToMany(mappedBy ="categoria", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("categoria")
-	private List<ProdutoModel> produto;
-
 
 	public List<ProdutoModel> getProduto() {
 		return produto;

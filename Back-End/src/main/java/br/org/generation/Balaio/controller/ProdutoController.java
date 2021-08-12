@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.org.generation.Balaio.repository.ProdutoRepository;
+import br.org.generation.Balaio.service.ProdutoService;
 import br.org.generation.Balaio.model.ProdutoModel;
 
 @RestController
@@ -59,4 +60,25 @@ public class ProdutoController {
     public void getId(@PathVariable long id) {
         ProdutoRepository.deleteById(id);
     }
+    
+    //Favoritar produtos
+    @PutMapping("/favoritar/{id}")
+    public ResponseEntity<ProdutoModel> putFavoritarProdutoId (@PathVariable Long id){
+    	return ResponseEntity.status(HttpStatus.OK).body(ProdutoService.favoritar(id));
+    }
+    
+    @PutMapping("/desfavoritar/{id}")
+    public ResponseEntity<ProdutoModel> putDesfavoritarProdutoId (@PathVariable Long id){
+    	return ResponseEntity.status(HttpStatus.OK).body(ProdutoService.desfavoritar(id));
+    }
 }
+
+
+
+
+
+
+
+
+
+

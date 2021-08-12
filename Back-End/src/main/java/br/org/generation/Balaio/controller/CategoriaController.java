@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.org.generation.Balaio.repository.CategoriaRepository;
 import br.org.generation.Balaio.model.CategoriaModel;
+import br.org.generation.Balaio.repository.CategoriaRepository;
+import br.org.generation.Balaio.service.CategoriaService;
 
 @RestController
 @RequestMapping("/categorias")
@@ -27,16 +28,16 @@ public class CategoriaController {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
+	@GetMapping
+	private ResponseEntity<List<CategoriaModel>> getAll() {
+		return ResponseEntity.ok(categoriaRepository.findAll());
+	}
+	
 	@GetMapping("/{id}")
 	private ResponseEntity<CategoriaModel> getById(@PathVariable long id) {
 		return categoriaRepository.findById(id)
 				.map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
-	}
-	
-	@GetMapping
-	private ResponseEntity<List<CategoriaModel>> getAll() {
-		return ResponseEntity.ok(categoriaRepository.findAll());
 	}
 		
 	@GetMapping("/descricao/{descricao}")
@@ -64,4 +65,20 @@ public class CategoriaController {
 	public void getId(@PathVariable long id) {
 		categoriaRepository.deleteById(id);
 	}
+	
+	//Favoritos
+	@GetMapping("/trendtopics")
+	public ResponseEntity<List<CategoriaModel>> getTrendTopics(){
+		return ResponseEntity.ok(CategoriaService.trendTopics());
+	}
 }
+
+
+
+
+
+
+
+
+
+

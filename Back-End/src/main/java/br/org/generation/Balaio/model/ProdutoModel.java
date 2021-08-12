@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "tb_produto")
@@ -16,24 +15,52 @@ public class ProdutoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+   
     @NotNull
     private String nomeproduto;
+    
     @NotNull
     private String descricaoproduto;
+    
     @NotNull
     private BigDecimal valor;
+   
     @NotNull
     @JsonFormat(pattern="dd-mm-yyyy")
     private Date dataFabricacao;
+   
     @JsonFormat(pattern="dd-mm-yyyy")
     private Date dataValidade;
+   
     @NotNull
     private int quantidade;
+    
+
+    //Atributo favoritos
+    
+    private int favoritos;
     
     @ManyToOne
     @JsonIgnoreProperties("produto")
     private CategoriaModel categoria;
-
+    
+    @ManyToOne
+    @JsonIgnoreProperties("produto")
+    private UsuarioModel usuario;
+    
+    
+	public int getFavoritos() {
+		return favoritos;
+	}
+	public void setFavoritos(int favoritos) {
+		this.favoritos = favoritos;
+	}
+	public UsuarioModel getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(UsuarioModel usuario) {
+		this.usuario = usuario;
+	}
 	public long getId() {
 		return id;
 	}
@@ -83,15 +110,5 @@ public class ProdutoModel {
 		this.categoria = categoria;
 	}
 
-	@ManyToOne
-    @JsonIgnoreProperties("produto")
-    private UsuarioModel usuario;
 
-	public UsuarioModel getusuario() {
-		return usuario;
-	}
-
-	public void setusuario(UsuarioModel usuario) {
-		this.usuario = usuario;
-	}
 }
